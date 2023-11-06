@@ -11,6 +11,7 @@ class App {
 
             Scanner scanner = new Scanner(System.in);
             String cmd = scanner.nextLine();
+            int n=0;
 
 
             if(cmd.equals("종료")){
@@ -23,8 +24,11 @@ class App {
 
                 System.out.print("작가 : ");
                 String authorName = scanner.nextLine();
+                n++;
 
-                System.out.printf("명언 : %s, 작가 : %s\n", content, authorName);
+                System.out.printf("%d번 명언이 등록되었습니다.\n", n);
+
+                //System.out.printf("명언 : %s, 작가 : %s\n", content, authorName);
 
             }
 
