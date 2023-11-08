@@ -17,6 +17,12 @@ class App {
             System.out.print("명령) ");
             String cmd = scanner.nextLine();
 
+            /*
+               Rq rq = new Rq(cmd);
+               System.out.println(rq.getAction());
+               System.out.println(rq.getParamAsInt("id", 0));
+           */
+
             if (cmd.equals("종료")) {
                 break;
             } else if (cmd.equals("등록")) {
@@ -67,10 +73,22 @@ class App {
         int id = getParamAsInt(cmd, "id", 0);
 
         if (id == 0) {
-            System.out.println("id를 입력해주세요.");
+            System.out.println("id를 정확히 입력해주세요.");
             return;
         } else if ((id <= lastId)&&(id>0)) {
-            System.out.printf("%d번 명언을 삭제합니다.\n", id);
+            for(Quotation quotation :  quotations){
+                if(quotation.getId() ==  id){
+                    if(!quotation.getContent().equals("")) {
+                        quotation.setContent("");
+                        quotation.setAuthorName("");
+                        System.out.printf("%d번 명언을 삭제합니다.\n", id);
+                    }else{
+                        System.out.printf("%d번 명언은 존재하지 않습니다.\n", id);
+                    }
+
+                }
+            }
+
         } else {
             System.out.printf("id가 없습니다.\n");
         }
@@ -81,7 +99,7 @@ class App {
         int id = getParamAsInt(cmd, "id", 0);
 
         if (id == 0) {
-            System.out.println("id를 입력해주세요.");
+            System.out.println("id를 정확히 입력해주세요.");
             return;
         } else if ((id <= lastId)&&(id>0)) {
             System.out.printf("%d번 명언을 수정합니다.\n", id);
