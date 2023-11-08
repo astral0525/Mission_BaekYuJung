@@ -78,7 +78,7 @@ class App {
         } else if ((id <= lastId)&&(id>0)) {
             for(Quotation quotation :  quotations){
                 if(quotation.getId() ==  id){
-                    if(!quotation.getContent().equals("")) {
+                    if(!quotation.getContent().equals("")||!quotation.getAuthorName().equals("")) {
                         quotation.setContent("");
                         quotation.setAuthorName("");
                         System.out.printf("%d번 명언을 삭제합니다.\n", id);
@@ -102,7 +102,27 @@ class App {
             System.out.println("id를 정확히 입력해주세요.");
             return;
         } else if ((id <= lastId)&&(id>0)) {
-            System.out.printf("%d번 명언을 수정합니다.\n", id);
+            for(Quotation quotation :  quotations){
+                if(quotation.getId() ==  id){
+                    if(!quotation.getContent().equals("")||!quotation.getAuthorName().equals("")) {
+                        String content = quotation.getContent();
+                        System.out.printf("명언(기존) : %s\n", content);
+                        System.out.printf("명언 : ");
+                        content = scanner.nextLine();
+                        quotation.setContent(content);
+                        String authorName = quotation.getAuthorName();
+                        System.out.printf("작가(기존) : %s\n", authorName);
+                        System.out.printf("작가 : ");
+                        authorName = scanner.nextLine();
+                        quotation.setAuthorName(authorName);
+
+                        System.out.printf("%d번 명언을 수정합니다.\n", id);
+
+                    }else{
+                        System.out.printf("%d번 명언은 존재하지 않습니다.\n", id);
+                    }
+                }
+            }
         } else {
             System.out.printf("id가 없습니다.\n");
         }
